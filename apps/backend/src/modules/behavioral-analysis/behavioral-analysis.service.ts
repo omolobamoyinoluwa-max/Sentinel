@@ -20,7 +20,7 @@ export class BehavioralAnalysisService {
     );
 
     const totalVolume = transactions.reduce((sum, tx) => sum + tx.amount, 0);
-    const counterparties = new Set(transactions.map((tx) => tx.counterparty));
+    const counterparties = new Set(transactions.map(tx => tx.counterparty));
 
     return {
       walletAddress: transactions[0].walletAddress,
@@ -42,8 +42,8 @@ export class BehavioralAnalysisService {
         ? transactions.reduce((s, tx) => s + tx.amount, 0) / transactions.length
         : 0;
 
-    const counterparties = [...new Set(transactions.map((tx) => tx.counterparty))];
-    const assets = [...new Set(transactions.map((tx) => tx.asset))];
+    const counterparties = [...new Set(transactions.map(tx => tx.counterparty))];
+    const assets = [...new Set(transactions.map(tx => tx.asset))];
 
     return {
       walletAddress: transactions[0]?.walletAddress ?? '',
@@ -111,6 +111,6 @@ export class BehavioralAnalysisService {
   }
 
   private uniqueDays(txs: WalletTransaction[]): number {
-    return new Set(txs.map((tx) => tx.timestamp.slice(0, 10))).size;
+    return new Set(txs.map(tx => tx.timestamp.slice(0, 10))).size;
   }
 }
